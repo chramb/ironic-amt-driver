@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ironic-driver-amt"
+description = ""
+authors = [{ name = "chramb" }]
+dynamic = ["version"]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: OpenStack",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "requests", # Apache-2.0
+    "oslo.log" # Apache-2.0
+]
+
+[project.entry-points]
+"ironic.hardware.interfaces.management" = { "amt" = "ironic_driver_amt.management:AMTManagement"}
+"ironic.hardware.interfaces.power" = { "amt" = "ironic_driver_amt.power:AMTPower"}
+"ironic.hardware.types" = { "amt" =  "ironic_driver_amt.driver:AMTHardware"}
