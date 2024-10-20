@@ -66,7 +66,7 @@ class AMTPower(base.PowerInterface):
 
             # return amt.set_power_state(client, POWER_STATE_MAP[power_state])
             xml = wsman.CIM_PowerManagementService.RequestPowerStateChange(SET_POWER_STATE_MAP[power_state])
-            post(client, xml, s)
+            result = post(client, xml, s)
             LOG.debug(f"RequestPowerStateChange: {result}")
         utils.node_wait_for_power_state(task, power_state, timeout)
 
